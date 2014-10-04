@@ -43,7 +43,7 @@ describe("Persistent Node Chat Server", function() {
               /* Now if we look in the database, we should find the
                * posted message there. */
 
-              var queryString = "select username, message from messages";
+              var queryString = "select userid, message from messages";
               var queryArgs = [];
               /* TODO: Change the above queryString & queryArgs to match your schema design
                * The exact query string and query args to use
@@ -69,7 +69,7 @@ describe("Persistent Node Chat Server", function() {
     var jsonDate = now.toJSON();
     var then = new Date(jsonDate);
 
-    var queryString = "insert into messages (username, userid, message, roomname, createdAt, updatedAt) values ('Valjean', 22, 'Men like you can never change!', 'main', NOW(), NOW())";
+    var queryString = "insert into messages (userid, message, roomname, createdAt, updatedAt) values (23, 'Men like you can never change!', 'main', NOW(), NOW())";
     console.log(queryString);
     var queryArgs = [];
     /* TODO - The exact query string and query args to use

@@ -13,17 +13,19 @@ var User = sequelize.define('users', {
 });
 
 var Message = sequelize.define('messages', {
-  username: Sequelize.STRING,
+  //username: Sequelize.STRING,
   userid: Sequelize.INTEGER,
   message: Sequelize.STRING,
   roomname: Sequelize.STRING,
 });
 
+Message.belongsTo(User, {foreignKey: 'userid'})
+
 sequelize.sync().success(function() {});
 
 
 exports.findAllMessages = function(cb){
-  Message.findAll({attributes: ['username', 'message', 'roomname']}).success(cb);
+  Message.findAll({attributes: ['userid', 'message', 'roomname'], include: [{model: User, attributes: ['username']}] }).success(cb);
 };
 
 exports.findUser = function(username, cb){
@@ -40,10 +42,9 @@ exports.saveUser = function(username, cb){
   }).success(cb);
 };
 
-exports.saveMessage = function(userid, message, username, roomname, cb){
+exports.saveMessage = function(userid, message, roomname, cb){
   Message.create({
     userid: userid,
-    username: username,
     message: message,
     roomname: roomname
   }).success(cb);

@@ -17,11 +17,11 @@ exports.postMessage = function(req, res) {
     var chat = {
       message: message.message,
       userid: results[0].id,
-      username: message.username,
+      //username: message.username,
       roomname: message.roomname
     };
 
-    saveMessage(chat.userid, chat.message, chat.username, chat.roomname, function () {
+    saveMessage(chat.userid, chat.message, chat.roomname, function () {
       serverHelpers.sendResponse(res, message);
     });
   };
