@@ -20,14 +20,6 @@ var Message = sequelize.define('messages', {
   roomname: Sequelize.STRING
 });
 
-// sequelize.authenticate().complete(function(err) {
-//   if (!!err) {
-//     console.log('failed to connect');
-//   } else {
-//     console.log('established connection');
-//   }
-// });
-
 sequelize.sync().success(function() {
   console.log('test saving message');
   Message.create({
