@@ -11,13 +11,10 @@ var findOrCreateUser = db.findOrCreateUser;
 exports.postMessage = function(req, res) {
   // declare this variable so we can retain access to it throughout the entire promise chain.
   var message;
-  //console.log('MESSAGE: ' + message);
   var resultsCallback = function (results) {
-    console.log('========================================results: ' + results[0].id)
     var chat = {
       message: message.message,
       userid: results[0].id,
-      //username: message.username,
       roomname: message.roomname
     };
 
@@ -28,8 +25,6 @@ exports.postMessage = function(req, res) {
 
   parseData(req, function(_, msg) {
     message = msg;
-    //console.log('MESSAGE: ' + JSON.stringify(message));
-
     findOrCreateUser(msg.username, function(results) {
       resultsCallback(results);
     });
@@ -39,8 +34,7 @@ exports.postMessage = function(req, res) {
 
 exports.getMessages = function(req, res) {
   findMessages(function(messages) {
-      //console.log("FOUND MESSAGES", messages);
-      serverHelpers.sendResponse(res, messages);
+    serverHelpers.sendResponse(res, messages);
   });
 };
 

@@ -15,7 +15,6 @@ var User = sequelize.define('users', {
 });
 
 var Message = sequelize.define('messages', {
-  //username: Sequelize.STRING,
   message: Sequelize.STRING,
   roomname: Sequelize.STRING,
   userid: Sequelize.INTEGER
@@ -24,7 +23,6 @@ var Message = sequelize.define('messages', {
 sequelize.sync().success(function() {
   console.log('test saving message');
   Message.create({
-    //username: 'TestUser',
     message: 'Test Message',
     roomname: 'Test Room',
     userid: 100
