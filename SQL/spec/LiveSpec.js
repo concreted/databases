@@ -69,7 +69,7 @@ describe("Persistent Node Chat Server", function() {
     var jsonDate = now.toJSON();
     var then = new Date(jsonDate);
 
-    var queryString = "insert into messages (username, message, roomname, createdAt, updatedAt) values ('Valjean', 'Men like you can never change!', 'main', NOW(), NOW())";
+    var queryString = "insert into messages (username, userid, message, roomname, createdAt, updatedAt) values ('Valjean', 22, 'Men like you can never change!', 'main', NOW(), NOW())";
     console.log(queryString);
     var queryArgs = [];
     /* TODO - The exact query string and query args to use

@@ -17,7 +17,8 @@ var User = sequelize.define('users', {
 var Message = sequelize.define('messages', {
   username: Sequelize.STRING,
   message: Sequelize.STRING,
-  roomname: Sequelize.STRING
+  roomname: Sequelize.STRING,
+  userid: Sequelize.INTEGER
 });
 
 sequelize.sync().success(function() {
@@ -25,7 +26,8 @@ sequelize.sync().success(function() {
   Message.create({
     username: 'TestUser',
     message: 'Test Message',
-    roomname: 'Test Room'
+    roomname: 'Test Room',
+    userid: 100
   }).success(function(message) {
     console.log(message.values);
     Message.findAll().success(function(results) {

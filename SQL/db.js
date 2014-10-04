@@ -14,6 +14,7 @@ var User = sequelize.define('users', {
 
 var Message = sequelize.define('messages', {
   username: Sequelize.STRING,
+  userid: Sequelize.INTEGER,
   message: Sequelize.STRING,
   roomname: Sequelize.STRING,
 });
@@ -39,9 +40,10 @@ exports.saveUser = function(username, cb){
   }).success(cb);
 };
 
-exports.saveMessage = function(message, userid, roomname, cb){
+exports.saveMessage = function(userid, message, username, roomname, cb){
   Message.create({
-    username: userid,
+    userid: userid,
+    username: username,
     message: message,
     roomname: roomname
   }).success(cb);
