@@ -32,6 +32,7 @@ exports.postMessage = function(req, res) {
     message = msg;
     console.log('MESSAGE: ' + JSON.stringify(message));
     findUser(msg.username, function (err, results) {
+      console.log("RESULTS:", results)
       // no results/0 results
       // console.log('checked for user');
       if (!results || !results.length) {
@@ -39,7 +40,8 @@ exports.postMessage = function(req, res) {
         // console.log('no user found');
         // console.log('username: ', message.username)
         saveUser(message.username, function() {
-          findUser(msg.username, function(err, results) {
+          findUser(msg.username, function(results) {
+            console.log('RESULTS AFTER SAVE:', results);
             resultsCallback(results);
           });
         });
@@ -53,7 +55,8 @@ exports.postMessage = function(req, res) {
 };
 
 exports.getMessages = function(req, res) {
-  findMessages(function(err, messages) {
+  findMessages(function(messages) {
+      console.log("FOUND MESSAGES", messages);
       serverHelpers.sendResponse(res, messages);
   });
 };
