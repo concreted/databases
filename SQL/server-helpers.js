@@ -1,7 +1,7 @@
 var headers = {
   "access-control-allow-origin": "*",
   "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
-  "access-control-allow-headers": "content-type, accept",
+  "access-control-allow-headers": "content-type, accept, X-Parse-Application-Id, X-Parse-REST-API-Key",
   "access-control-max-age": 10, // Seconds.
   'Content-Type': "application/json"
 };
@@ -20,6 +20,6 @@ exports.sendResponse = function(response, obj, status){
   status = status || 200;
   response.writeHead(status, headers);
   var string = JSON.stringify(obj);
-  console.log("Sending: %s", string);
+  // console.log("Sending: %s", string);
   response.end(string);
 };

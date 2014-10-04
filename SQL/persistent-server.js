@@ -16,7 +16,7 @@ var router = function(req, res) {
   var path = url.parse(req.url).pathname;
   var method = req.method;
 
-  console.log("%s -- %s", method, path);
+  // console.log("%s -- %s", method, path);
 
   if (path === '/classes/messages') {
     if (method === 'POST') {
@@ -33,6 +33,6 @@ var router = function(req, res) {
 
 var server = http.createServer(router);
 
-console.log("Listening on http://" + ip + ":" + port);
+// console.log("Listening on http://" + ip + ":" + port);
 server.listen(port, ip);
 
